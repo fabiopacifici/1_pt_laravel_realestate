@@ -23,16 +23,20 @@
 
             <div class="col">
                 <div class="card position-relative h-100">
-                    <img src="{{$house->cover_image}}" alt="The house image description" class="card-img-top">
+
+                    <a href="{{route('guests.houses.show', $house)}}">
+                        <img src="{{$house->cover_image}}" alt="The house image description" class="card-img-top">
+                    </a>
+
 
                     <div class="card-body">
                         {{$house->description}}
+                        <a href="{{route('guests.houses.show', $house)}}">view</a>
                     </div>
 
                     <div class="bg-primary text-white price position-absolute top-0 end-0 fs-3 m-3">
                         $ {{$house->price}}
                     </div>
-
                 </div>
             </div>
             @empty

@@ -48,6 +48,7 @@
                             Search
                         </button>
                     </form>
+                    <a href="{{route('admin.houses.index')}}">Admin</a>
                 </div>
             </div>
         </nav>
