@@ -3,8 +3,12 @@
 
 @section('content')
 
-
+<h1 class="p-3 bg-dark text-white">Properties</h1>
 <div class="container min-vh-100 py-5">
+    <a class="btn btn-primary rounded-pill position-fixed bottom-0 end-0 m-3" href="{{route('admin.houses.create')}}" role="button">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+        <span>ADD</span>
+    </a>
 
     <div class="table-responsive">
         <table class="table table-primary">

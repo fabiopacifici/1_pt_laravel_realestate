@@ -22,7 +22,8 @@ class HouseController extends Controller
      */
     public function create()
     {
-        //
+
+        return view('admin.houses.create');
     }
 
     /**
@@ -30,7 +31,20 @@ class HouseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $data = $request->all();
+        //$house = new House();
+        /*         $house->reference_code = $data['reference_code'];
+        $house->description = $data['description'];
+        $house->square_meters = $data['square_meters'];
+        $house->price = $data['price'];
+        $house->exterior = $data['exterior']; */
+        /* $house->fill($data);
+        $house->save(); */
+        House::create($data);
+        // TODO: pattern POST-REDIRECT-GET
+
+        return to_route('admin.houses.index');
     }
 
     /**

@@ -37,6 +37,8 @@ Route::get('/company', function () {
 /* CRUD OPERATIONS */
 
 Route::get('/admin/houses', [HouseController::class, 'index'])->name('admin.houses.index');
+Route::get('/admin/houses/create', [HouseController::class, 'create'])->name('admin.houses.create');
+Route::post('/admin/houses', [HouseController::class, 'store'])->name('admin.houses.store');
 Route::get('/admin/houses/{house}', [HouseController::class, 'show'])->name('admin.houses.show');
 
 
