@@ -29,6 +29,8 @@
                     <td><img width="100" src="{{$house->cover_image}}" alt=""></td>
                     <td>
                         <a href="{{route('admin.houses.show', $house)}}">View</a>
+                        <a href="{{route('admin.houses.edit', $house)}}">Edit</a>
+
                     </td>
                 </tr>
 
@@ -44,7 +46,7 @@
         </table>
     </div>
 
-
+    {{$houses->links('pagination::bootstrap-5')}}
 
 
 </div>

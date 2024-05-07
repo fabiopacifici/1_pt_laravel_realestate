@@ -18,7 +18,11 @@
             <small id="refCodeHelper" class="form-text text-muted">Type a reference code</small>
         </div>
 
-
+        <div class="mb-3">
+            <label for="cover_image" class="form-label">cover_image</label>
+            <input type="text" class="form-control" name="cover_image" id="cover_image" aria-describedby="coverImageHelper" placeholder="https://lorempicsum.com/myimage.png" />
+            <small id="coverImageHelper" class="form-text text-muted">Type the cover_image size here</small>
+        </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descripotion</label>
             <textarea class="form-control" name="description" id="description" rows="3"></textarea>

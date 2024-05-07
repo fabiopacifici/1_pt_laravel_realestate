@@ -14,7 +14,7 @@ class HouseController extends Controller
     public function index()
     {
         //dd(House::all());
-        return view('admin.houses.index', ['houses' => House::all()]);
+        return view('admin.houses.index', ['houses' => House::orderByDesc('id')->paginate(8)]);
     }
 
     /**
@@ -61,17 +61,22 @@ class HouseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(House $house)
     {
-        //
+        //dd($house);
+        return view('admin.houses.edit', compact('house'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, House $house)
     {
         //
+
+        //dd($request->all(), $house);
+        $house->update($request->all());
+        return to_route('admin.houses.edit', $house);
     }
 
     /**
