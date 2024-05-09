@@ -32,7 +32,20 @@ class HouseController extends Controller
     public function store(Request $request)
     {
         //dd($request);
-        $data = $request->all();
+        // Validate
+
+        $val_data = $request->validate([
+            'reference_code' => 'required',
+            'cover_image' => 'required|max:255',
+            'description' => 'required|min:5|max:2000',
+            'square_meters' => 'required',
+            'price' => 'nullable',
+            'exterior' => 'nullable'
+        ]);
+
+        //dd($valdata);
+        //$data = $request->all();
+
         //$house = new House();
         /*         $house->reference_code = $data['reference_code'];
         $house->description = $data['description'];
@@ -41,9 +54,12 @@ class HouseController extends Controller
         $house->exterior = $data['exterior']; */
         /* $house->fill($data);
         $house->save(); */
-        House::create($data);
-        // TODO: pattern POST-REDIRECT-GET
 
+        /* Create the resource */
+        House::create($val_data);
+
+
+        /* POST/REDIRECT/GET pattern */
         return to_route('admin.houses.index');
     }
 
@@ -72,18 +88,28 @@ class HouseController extends Controller
      */
     public function update(Request $request, House $house)
     {
-        //
+        //Validate your data
+        $val_data = $request->validate([
+            'reference_code' => 'required',
+            'cover_image' => 'required|max:255',
+            'description' => 'required|min:5|max:2000',
+            'square_meters' => 'required',
+            'price' => 'nullable',
+            'exterior' => 'nullable'
+        ]);
 
         //dd($request->all(), $house);
-        $house->update($request->all());
+        $house->update($val_data);
         return to_route('admin.houses.edit', $house);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(House $house)
     {
-        //
+        //dd($house);
+        $house->delete();
+        return to_route('admin.houses.index');
     }
 }

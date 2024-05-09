@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 
 @section('content')
@@ -28,8 +28,47 @@
                     <td>{{$house->reference_code ?? 'N/A'}}</td>
                     <td><img width="100" src="{{$house->cover_image}}" alt=""></td>
                     <td>
-                        <a href="{{route('admin.houses.show', $house)}}">View</a>
-                        <a href="{{route('admin.houses.edit', $house)}}">Edit</a>
+                        <a class="btn btn-sm btn-primary" href="{{route('admin.houses.show', $house)}}">View</a>
+                        <a class="btn btn-sm btn-secondary" href="{{route('admin.houses.edit', $house)}}">Edit</a>
+
+
+                        <!-- Modal trigger button -->
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#modalId-{{$house->id}}">
+                            Delete
+                        </button>
+
+                        <!-- Modal Body -->
+                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                        <div class="modal fade" id="modalId-{{$house->id}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitle-{{$house->id}}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitle-{{$house->id}}">
+                                            Delete house {{$house->reference_code}}
+                                        </h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete this? The operation cannot be reverted
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <form action="{{route('admin.houses.destroy', $house )}}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="btn btn-danger">
+                                                Delete
+                                            </button>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                     </td>
                 </tr>

@@ -25,9 +25,25 @@
 
 
     @include('partials.header')
-    <main>
-        @yield('content')
-    </main>
+    <div class="container-fluid min-vh-100">
+        <div class="row">
+            <div class="col-3">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link {{Route::currentRouteName() === 'admin.dashboard' ? 'active' :''}}" aria-current="page" href="{{route('admin.dashboard')}}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{Route::currentRouteName() === 'admin.houses.index' ? 'active' :''}}" href="{{route('admin.houses.index')}}">Houses</a>
+                    </li>
+
+                </ul>
+            </div>
+            <main class="col-9">
+                @yield('content')
+            </main>
+
+        </div>
+    </div>
 
     @include('partials.footer')
 

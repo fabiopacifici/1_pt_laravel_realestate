@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\HouseController;
 use Illuminate\Support\Facades\Route;
 use App\Models\House;
+use App\Http\Controllers\Admin\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,12 +36,12 @@ Route::get('/company', function () {
 
 
 /* CRUD OPERATIONS */
-
+Route::get('/admin', [HomeController::class, 'dashboard'])->name('admin.dashboard');
 Route::get('/admin/houses', [HouseController::class, 'index'])->name('admin.houses.index');
 Route::get('/admin/houses/create', [HouseController::class, 'create'])->name('admin.houses.create');
 Route::post('/admin/houses', [HouseController::class, 'store'])->name('admin.houses.store');
 Route::get('/admin/houses/{house}', [HouseController::class, 'show'])->name('admin.houses.show');
 Route::get('/admin/houses/{house}/edit', [HouseController::class, 'edit'])->name('admin.houses.edit');
 Route::put('/admin/houses/{house}', [HouseController::class, 'update'])->name('admin.houses.update');
-
+Route::delete('/admin/houses/{house}', [HouseController::class, 'destroy'])->name('admin.houses.destroy');
 //Route::resource('houses', HouseController::class);
